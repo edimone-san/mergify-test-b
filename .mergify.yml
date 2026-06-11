@@ -1,0 +1,15 @@
+queue_rules:
+  - name: codex-command-test
+    queue_conditions:
+      - label=codex-queue-allowed
+    merge_conditions:
+      - label=codex-never-merge
+    merge_method: squash
+
+pull_request_rules:
+  - name: codex command authorization test
+    conditions:
+      - label=codex-queue-allowed
+    actions:
+      queue:
+        name: codex-command-test
